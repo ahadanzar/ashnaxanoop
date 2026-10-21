@@ -16,12 +16,14 @@ export default function RsvpModal({
   t: Copy["rsvp"];
 }) {
   const [name, setName] = useState("");
-  const [count, setCount] = useState(1);
-  const [pref, setPref] = useState<"Veg" | "Non-veg">("Veg");
+  const [count, setCount] = useState("1");
+  const [pref, setPref] = useState<"Veg" | "Non-veg">("Non-veg");
   const [website, setWebsite] = useState(""); // honeypot
   const [status, setStatus] = useState<Status>("idle");
   const [thanksName, setThanksName] = useState("");
   const nameRef = useRef<HTMLInputElement>(null);
+  const countExceedsLimit = Number(count) > 10;
+  const countIsValid = /^\d+$/.test(count) && Number(count) >= 1 && !countExceedsLimit;
 
   useEffect(() => {
     if (!open) return;
@@ -39,19 +41,24 @@ export default function RsvpModal({
     e.preventDefault();
     const clean = name.trim();
     if (!clean || status === "sending") return;
+    const headcount = Number(count);
+    if (!/^\d+$/.test(count) || headcount < 1 || headcount > 10) {
+      setStatus("error");
+      return;
+    }
     setStatus("sending");
     try {
       const res = await fetch("/api/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: clean, count, pref, website }),
+        body: JSON.stringify({ name: clean, count: headcount, pref, website }),
       });
       if (!res.ok) throw new Error("failed");
       setThanksName(clean);
       setStatus("ok");
       setName("");
-      setCount(1);
-      setPref("Veg");
+      setCount("1");
+      setPref("Non-veg");
       setTimeout(onClose, 2400);
     } catch {
       setStatus("error");
@@ -105,14 +112,21 @@ export default function RsvpModal({
                 </label>
                 <input
                   id="rsvpCount"
-                  type="number"
+                  type="text"
                   inputMode="numeric"
-                  min={1}
-                  max={20}
+                  pattern="[0-9]*"
+                  maxLength={2}
                   required
+                  aria-invalid={countExceedsLimit}
+                  aria-describedby={countExceedsLimit ? "rsvpCountError" : undefined}
                   value={count}
-                  onChange={(e) => setCount(Math.max(1, Math.min(20, Number(e.target.value) || 1)))}
+                  onChange={(e) => setCount(e.target.value.replace(/\D/g, "").slice(0, 2))}
                 />
+                {countExceedsLimit && (
+                  <p id="rsvpCountError" className="count-error t" role="alert">
+                    {t.countLimit}
+                  </p>
+                )}
 
                 <span className="field-label t">{t.food}</span>
                 <div className="pref-options">
@@ -146,7 +160,11 @@ export default function RsvpModal({
                   <button type="button" className="modal-cancel t" onClick={onClose}>
                     {t.cancel}
                   </button>
-                  <button type="submit" className="modal-submit t" disabled={status === "sending"}>
+                  <button
+                    type="submit"
+                    className="modal-submit t"
+                    disabled={status === "sending" || !name.trim() || !countIsValid}
+                  >
                     {status === "sending" ? t.sending : t.submit}
                   </button>
                 </div>

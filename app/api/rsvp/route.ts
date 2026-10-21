@@ -23,10 +23,15 @@ export async function POST(req: Request) {
   }
 
   const name = typeof body.name === "string" ? body.name.trim().slice(0, 80) : "";
-  const count = Number(body.count);
+  const count =
+    typeof body.count === "number"
+      ? body.count
+      : typeof body.count === "string" && /^\d+$/.test(body.count)
+        ? Number(body.count)
+        : NaN;
   const pref = body.pref === "Non-veg" ? "Non-veg" : body.pref === "Veg" ? "Veg" : "";
 
-  if (!name || !Number.isInteger(count) || count < 1 || count > 20 || !pref) {
+  if (!name || !Number.isInteger(count) || count < 1 || count > 10 || !pref) {
     return NextResponse.json({ ok: false, error: "Invalid details" }, { status: 400 });
   }
 

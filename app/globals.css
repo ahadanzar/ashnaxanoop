@@ -567,6 +567,7 @@ html[lang="ml"] .env-letter-names { font-family: var(--font-ml), sans-serif; fon
   border-radius: 8px;
 }
 .modal-box input:focus { outline: 2px solid rgba(168, 92, 104, .45); outline-offset: 1px; }
+.count-error { margin: 6px 0 0; color: #b42318; font-size: 14px; text-align: left; }
 .pref-options { display: flex; gap: 10px; }
 .pref-options .pref {
   flex: 1;
