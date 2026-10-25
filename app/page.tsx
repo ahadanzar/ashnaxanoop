@@ -132,9 +132,7 @@ export default function MehndiInvitation() {
   return (
     <main className="page-shell">
       <div className="topline">
-        <span>ASHNA & ANOOP</span>
-        <span className="topline-divider" aria-hidden="true" />
-        <span>MEHNDI · 05 DECEMBER 2026</span>
+        <span>A &amp; A</span>
       </div>
 
       <section className="hero" aria-labelledby="invitation-title">
@@ -142,7 +140,7 @@ export default function MehndiInvitation() {
         <span className="doodle doodle-flower" aria-hidden="true">✿</span>
         <span className="doodle doodle-dot" aria-hidden="true" />
         <div className="hero-copy">
-          <p className="eyebrow hero-eyebrow">MEHNDI CELEBRATION</p>
+          <p className="eyebrow hero-eyebrow">MEHNDI</p>
           <h1 id="invitation-title">{couple}</h1>
           <p className="hero-intro">Join us for an evening of henna and celebration.</p>
         </div>
@@ -174,7 +172,7 @@ export default function MehndiInvitation() {
             <span className="card-doodle" aria-hidden="true">✿</span>
             <p className="detail-index">THE WHERE</p>
             <h3>Luminara Hotel</h3>
-            <p className="detail-secondary">Find us, and bring your dancing shoes.</p>
+            <p className="detail-secondary">Luminara Hotel</p>
             <a className="text-link" href={mapsUrl} target="_blank" rel="noreferrer">
               Find us on Google Maps <span aria-hidden="true">↗</span>
             </a>
@@ -201,7 +199,7 @@ export default function MehndiInvitation() {
       <section className="rsvp-section reveal-on-scroll" id="rsvp" aria-labelledby="rsvp-title">
         <div className="rsvp-intro">
           <span className="eyebrow">LET US KNOW</span>
-          <h2 id="rsvp-title">Count us in!</h2>
+          <h2 id="rsvp-title">RSVP</h2>
           <p>Please share your guest count and food preference.</p>
         </div>
         <form className="rsvp-form" onSubmit={submitRsvp}>
@@ -247,15 +245,15 @@ export default function MehndiInvitation() {
             </div>
           </div>
           <button className="button button-green" type="submit" disabled={rsvpStatus === "sending"}>
-            {rsvpStatus === "sending" ? "Sending a little note…" : "Yep, we'll be there!"}
+            {rsvpStatus === "sending" ? "Submitting…" : "Submit RSVP"}
           </button>
           <p className={`form-status ${rsvpStatus}`} aria-live="polite">{rsvpMessage}</p>
         </form>
       </section>
 
       <footer className="footer reveal-on-scroll">
-        <p className="eyebrow">QUESTIONS?</p>
-        <h2>Need anything? Just holler.</h2>
+        <p className="eyebrow">CONTACT DETAILS</p>
+        <h2>Get in touch</h2>
         <div className="contact-links">
           {contacts.map((contact) => (
             <a className="contact-card" href={`tel:${contact.phone}`} key={contact.name}>

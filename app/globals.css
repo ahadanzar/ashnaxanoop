@@ -47,21 +47,14 @@ select {
   display: flex;
   min-height: 52px;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding: 12px 24px;
+  justify-content: flex-start;
+  padding: 12px clamp(30px, 9vw, 100px);
   border-bottom: 1px solid var(--line);
-  color: var(--muted);
-  font-size: 9px;
-  font-weight: 650;
-  letter-spacing: .12em;
-  text-align: center;
-}
-
-.topline-divider {
-  width: 18px;
-  height: 1px;
-  background: var(--gold);
+  color: var(--green);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: .04em;
 }
 
 .hero {
@@ -709,13 +702,8 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
 
 @media (max-width: 560px) {
   .topline {
-    gap: 9px;
-    font-size: 8px;
-    letter-spacing: .08em;
-  }
-
-  .topline-divider {
-    width: 12px;
+    padding-right: 26px;
+    padding-left: 26px;
   }
 
   .hero {
