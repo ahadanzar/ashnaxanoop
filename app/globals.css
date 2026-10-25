@@ -59,16 +59,12 @@ select {
 
 .hero {
   position: relative;
-  display: grid;
-  min-height: 490px;
-  grid-template-columns: 1.4fr .7fr;
+  display: flex;
+  min-height: 390px;
   align-items: center;
-  gap: 44px;
   padding: 70px clamp(30px, 9vw, 100px) 76px;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse at 77% 48%, rgb(232 237 223 / 70%) 0 23%, transparent 24%),
-    var(--paper);
+  background: var(--paper);
 }
 
 .hero::after {
@@ -120,97 +116,6 @@ select {
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(16px, 2vw, 19px);
   line-height: 1.35;
-}
-
-.hero-date {
-  position: relative;
-  display: flex;
-  min-height: 245px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 10px;
-  color: var(--green);
-  animation: date-pop .8s .2s both cubic-bezier(.2, .75, .25, 1);
-}
-
-.hero-date::before {
-  position: absolute;
-  inset: 9px 0;
-  border: 1px solid rgb(49 79 62 / 22%);
-  border-radius: 47% 53% 50% 48% / 48% 44% 56% 52%;
-  content: "";
-  transform: rotate(-7deg);
-}
-
-.hero-date::after {
-  position: absolute;
-  inset: 17px 7px 1px -6px;
-  border: 1px dashed rgb(49 79 62 / 21%);
-  border-radius: 51% 47% 49% 52% / 54% 48% 50% 46%;
-  content: "";
-  transform: rotate(7deg);
-}
-
-.date-note,
-.date-day,
-.date-month,
-.date-rule,
-.date-weekday,
-.date-time,
-.date-place {
-  position: relative;
-  z-index: 1;
-}
-
-.date-note {
-  margin-bottom: 12px;
-  color: var(--gold);
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: .16em;
-}
-
-.date-day {
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 78px;
-  font-weight: 400;
-  letter-spacing: -.08em;
-  line-height: .85;
-}
-
-.date-month {
-  margin-top: 8px;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .17em;
-}
-
-.date-rule {
-  width: 26px;
-  height: 1px;
-  margin: 12px 0 8px;
-  background: var(--gold);
-}
-
-.date-weekday,
-.date-time,
-.date-place {
-  font-size: 9px;
-  font-weight: 750;
-  letter-spacing: .08em;
-}
-
-.date-time {
-  margin-top: 5px;
-  color: var(--gold);
-}
-
-.date-place {
-  margin-top: 5px;
-  color: var(--muted);
-  font-size: 8px;
-  letter-spacing: .04em;
 }
 
 .doodle {
@@ -638,17 +543,6 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
   }
 }
 
-@keyframes date-pop {
-  from {
-    opacity: 0;
-    transform: scale(.9) rotate(3deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
 @keyframes reveal-in {
   from {
     opacity: 0;
@@ -682,9 +576,7 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
 
 @media (max-width: 760px) {
   .hero {
-    min-height: 450px;
-    grid-template-columns: 1.2fr .8fr;
-    gap: 22px;
+    min-height: 360px;
     padding-right: 34px;
     padding-left: 34px;
   }
@@ -708,12 +600,7 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
 
   .hero {
     min-height: 0;
-    grid-template-columns: 1fr;
-    gap: 27px;
     padding: 58px 26px 75px;
-    background:
-      radial-gradient(ellipse at 78% 33%, rgb(232 237 223 / 70%) 0 22%, transparent 23%),
-      var(--paper);
   }
 
   .hero h1 {
@@ -723,54 +610,6 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
 
   .hero-intro {
     font-size: 17px;
-  }
-
-  .hero-date {
-    min-height: 0;
-    flex-direction: row;
-    gap: 11px;
-    padding: 16px 8px;
-  }
-
-  .hero-date::before {
-    inset: 3px 5px;
-  }
-
-  .hero-date::after {
-    inset: 8px 0 0 2px;
-  }
-
-  .date-note {
-    display: none;
-  }
-
-  .date-day {
-    font-size: 40px;
-  }
-
-  .date-month {
-    max-width: 33px;
-    margin: 0;
-    font-size: 7px;
-    line-height: 1.35;
-  }
-
-  .date-rule {
-    width: 1px;
-    height: 25px;
-    margin: 0;
-  }
-
-  .date-weekday,
-  .date-time,
-  .date-place {
-    font-size: 7px;
-    letter-spacing: .04em;
-  }
-
-  .date-time,
-  .date-place {
-    margin: 0;
   }
 
   .primary-link {
@@ -794,23 +633,25 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
   }
 
   .details-grid {
-    grid-template-columns: 1fr;
-    gap: 26px;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
   }
 
   .detail-card {
     min-height: 0;
-    padding: 0;
+    padding: 0 12px 0 0;
   }
 
   .detail-card + .detail-card {
-    padding: 24px 0 0;
-    border-top: 1px solid var(--line);
-    border-left: 0;
+    padding: 0 0 0 12px;
+    border-top: 0;
+    border-left: 1px solid var(--line);
   }
 
   .detail-index {
-    margin-bottom: 13px;
+    margin-bottom: 16px;
+    font-size: 8px;
+    letter-spacing: .08em;
   }
 
   .calendar-band {
@@ -833,11 +674,21 @@ html[data-motion-ready="true"] .reveal-on-scroll[data-visible="true"] {
   }
 
   .contact-links {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 17px;
-    width: max-content;
-    max-width: 100%;
+    align-items: stretch;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .contact-card {
+    min-width: 0;
+    flex: 1;
+    padding-right: 7px;
+    padding-left: 10px;
+  }
+
+  .contact-card strong {
+    font-size: 11px;
   }
 
   .footer {

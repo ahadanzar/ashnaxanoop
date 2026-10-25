@@ -144,15 +144,6 @@ export default function MehndiInvitation() {
           <h1 id="invitation-title">{couple}</h1>
           <p className="hero-intro">Join us for an evening of henna and celebration.</p>
         </div>
-        <div className="hero-date" aria-label="Saturday, 5 December 2026, at 6 PM">
-          <span className="date-note">WHEN & WHERE</span>
-          <span className="date-day">05</span>
-          <span className="date-month">DECEMBER</span>
-          <span className="date-rule" />
-          <span className="date-weekday">SATURDAY</span>
-          <span className="date-time">6:00 PM</span>
-          <span className="date-place">Luminara Hotel</span>
-        </div>
         <a className="primary-link" href="#rsvp">Save us a spot <span aria-hidden="true">↓</span></a>
       </section>
 
